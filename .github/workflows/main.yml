@@ -3,9 +3,13 @@ on: push
 jobs:
   security:
     runs-on: ubuntu-latest
+  
     steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        env:
+       - name: Submit Dependency Snapshot
+       - uses: advanced-security/maven-dependency-submission-action@v1
+    
+       - uses: actions/checkout@master
+       - name: Run Snyk to check for vulnerabilities
+         uses: snyk/actions/node@master
+         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
