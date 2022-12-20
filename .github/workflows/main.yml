@@ -1,15 +1,11 @@
-name: Example workflow using Snyk
+name: Example workflow for Python using Snyk
 on: push
 jobs:
   security:
     runs-on: ubuntu-latest
-  
     steps:
-       - name: Submit Dependency Snapshot
-       - uses: advanced-security/maven-dependency-submission-action@v1
-    
-       - uses: actions/checkout@master
-       - name: Run Snyk to check for vulnerabilities
-         uses: snyk/actions/node@master
-         env:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/maven@master
+        env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
